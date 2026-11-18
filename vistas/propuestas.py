@@ -79,6 +79,8 @@ def _tarjeta(p, u, lado, esp, prom, por_calificar):
                 st.rerun()
 
         if p["estado"] == "ACEPTADA":
+            from vistas.herramientas import qr_eventos_url
+            st.link_button("🎟️ Contar asistentes con QR Eventos", qr_eventos_url())
             if lado == "espacio" and fecha and fecha <= date.today():
                 with st.form(f"real_{pid}"):
                     reales = st.number_input("¿Cuántas personas llegaron por este promotor?",

@@ -7,7 +7,8 @@ import streamlit as st
 
 from config import APP_NAME
 from core import db, demo
-from vistas import acceso, admin, explorar, mi_espacio, perfil, promotores, propuestas
+from vistas import (acceso, admin, explorar, herramientas, mi_espacio, perfil, promotores,
+                    propuestas)
 
 st.set_page_config(page_title=APP_NAME, page_icon="🎤", layout="wide")
 
@@ -37,6 +38,7 @@ def main():
     u = st.session_state.get("usuario")
     P = st.Page
     privacidad = P(acceso.privacidad, title="Privacidad", icon="🔒", url_path="privacidad")
+    herr = P(herramientas.herramientas, title="Herramientas", icon="🧰", url_path="herramientas")
 
     if not u:
         paginas = [P(explorar.buscar, title="Explorar espacios", icon="🔎", default=True),
@@ -49,6 +51,7 @@ def main():
                    P(propuestas.mis_propuestas, title="Mis propuestas", icon="📨",
                      url_path="propuestas"),
                    P(perfil.mi_perfil, title="Mi perfil", icon="👤", url_path="perfil"),
+                   herr,
                    privacidad]
     elif u["rol"] == "espacio":
         paginas = [P(mi_espacio.mi_espacio, title="Mi espacio", icon="🏠", default=True),
@@ -56,6 +59,7 @@ def main():
                      url_path="recibidas"),
                    P(promotores.directorio, title="Promotores", icon="📣", url_path="promotores"),
                    P(perfil.mi_perfil, title="Mi perfil", icon="👤", url_path="perfil"),
+                   herr,
                    privacidad]
     else:  # admin
         paginas = {
@@ -68,6 +72,7 @@ def main():
                 P(explorar.buscar, title="Espacios", icon="🔎", url_path="espacios"),
                 P(promotores.directorio, title="Promotores", icon="📣", url_path="promotores"),
                 P(perfil.mi_perfil, title="Mi perfil", icon="👤", url_path="perfil"),
+                herr,
                 privacidad,
             ],
         }

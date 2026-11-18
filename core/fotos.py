@@ -16,16 +16,32 @@ LOCAL_FOTOS = db.LOCAL_DIR / "fotos"
 MAX_MB = 10
 
 
-def configurado() -> bool:
+def _conf() -> dict | None:
+    """Credenciales desde [cloudinary] o desde CLOUDINARY_URL
+    (cloudinary://API_KEY:API_SECRET@CLOUD_NAME)."""
     c = db.secret("cloudinary")
-    return bool(c and c.get("cloud_name") and c.get("api_key") and c.get("api_secret"))
+    if c and all(c.get(k) and c.get(k) != "..." for k in ("cloud_name", "api_key", "api_secret")):
+        return dict(c)
+    url = (db.secret("CLOUDINARY_URL") or "").strip()
+    if url.startswith("CLOUDINARY_URL="):
+        url = url.split("=", 1)[1]
+    if url.startswith("cloudinary://") and "@" in url and ":" in url:
+        cred, cloud = url[len("cloudinary://"):].rsplit("@", 1)
+        key, secret_ = cred.split(":", 1)
+        if key and secret_ and cloud:
+            return {"cloud_name": cloud, "api_key": key, "api_secret": secret_}
+    return None
+
+
+def configurado() -> bool:
+    return _conf() is not None
 
 
 def _cloudinary():
     import cloudinary
     import cloudinary.uploader
 
-    c = db.secret("cloudinary")
+    c = _conf()
     cloudinary.config(cloud_name=c["cloud_name"], api_key=c["api_key"],
                       api_secret=c["api_secret"], secure=True)
     return cloudinary.uploader

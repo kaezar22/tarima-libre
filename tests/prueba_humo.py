@@ -130,3 +130,11 @@ f = fotos.subir(b"\xff\xd8\xff" + b"0" * 100, bodega["espacio_id"])
 assert f["url"].startswith("local:")
 print("✓ foto local")
 print("\nTODO OK")
+
+# 9. Herramientas
+for email in ("casa.neon@demo.tarima", "ruido.bogota@demo.tarima"):
+    a = vista("vistas.herramientas.herramientas", email).run()
+    sin_errores(a, f"herramientas ({email})")
+a = vista("vistas.propuestas.mis_propuestas", "ruido.bogota@demo.tarima").run()
+sin_errores(a, "propuesta aceptada con enlace a QR Eventos")
+print("TODO OK 2")
