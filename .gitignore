@@ -1,0 +1,18 @@
+# Credenciales: NUNCA subir a GitHub
+service_account.json
+*service_account*.json
+.streamlit/secrets.toml
+cloud_secrets.toml
+.env
+
+# Datos del modo local
+_datos_local/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Basura local
+_to_delete/

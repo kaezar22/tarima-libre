@@ -1,0 +1,9 @@
+[theme]
+primaryColor = "#D9480F"
+
+[server]
+headless = true
+maxUploadSize = 15
+
+[client]
+toolbarMode = "minimal"

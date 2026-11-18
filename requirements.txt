@@ -1,0 +1,7 @@
+streamlit>=1.50
+gspread>=6.0
+google-auth>=2.20
+cloudinary>=1.40
+requests>=2.31
+pandas
+altair
