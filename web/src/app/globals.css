@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-crema: #F6F4ED;
+  --color-papel: #FFFFFF;
+  --color-tinta: #141414;
+  --color-concreto: #2A2A26;
+  --color-naranja: #EC6A24;
+  --color-naranja-osc: #A8420B;
+  --color-naranja-suave: #FCE6D7;
+  --color-gris: #615E57;
+  --color-gris-suave: #ECE9E1;
+  --color-linea: #DDD9CE;
+  --color-ok: #1E7A3C;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-sans: "Barlow", system-ui, sans-serif;
+}
+
+html { background: var(--color-crema); color: var(--color-tinta); }
+body { font-family: var(--font-sans); -webkit-tap-highlight-color: transparent; }
+a { text-underline-offset: 3px; }
+
+.concreto {
+  background-color: var(--color-concreto);
+  background-image: url("/brand/concreto.jpg");
+  background-size: cover;
+  color: var(--color-crema);
+}
+
+input, select, textarea { font-size: 16px; }
+
+.campo {
+  width: 100%;
+  background: var(--color-papel);
+  border: 1.5px solid var(--color-linea);
+  border-radius: 12px;
+  padding: 12px 14px;
+  min-height: 48px;
+  outline: none;
+}
+.campo:focus { border-color: var(--color-tinta); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 48px; padding: 0 20px; border-radius: 12px;
+  font-weight: 700; font-size: 16px; text-decoration: none; cursor: pointer;
+}
+.btn-primario { background: var(--color-naranja); color: var(--color-tinta); }
+.btn-primario:hover { background: #F27F3F; }
+.btn-oscuro { background: var(--color-tinta); color: var(--color-crema); }
+.btn-borde { border: 1.5px solid var(--color-tinta); color: var(--color-tinta); background: transparent; }
+.btn-chico { min-height: 40px; padding: 0 14px; font-size: 14px; border-radius: 10px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.tarjeta { background: var(--color-papel); border: 1px solid var(--color-linea); border-radius: 16px; }
+.etiqueta { background: var(--color-gris-suave); color: var(--color-concreto); border-radius: 6px; padding: 3px 8px; font-size: 13px; }
+.titulo { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; line-height: 1.02; text-transform: uppercase; }

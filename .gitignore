@@ -16,3 +16,6 @@ venv/
 
 # Basura local
 _to_delete/
+
+# Fotos originales (las versiones para web están en web/public/fotos)
+fotos_marca/
